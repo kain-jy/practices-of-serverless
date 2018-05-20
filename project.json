@@ -1,0 +1,8 @@
+{
+  "name": "practices-of-serverless",
+  "description": "",
+  "role": "arn:aws:iam::616531190626:role/practices-of-serverless",
+  "nameTemplate": "{{.Project.Name}}-{{.Function.Name}}",
+  "memory": 128,
+  "runtime": "python3.6"
+}

@@ -23,12 +23,16 @@ jobs:
       - run: pytest test.py
   deploy:
     docker:
-      - image: hashicorp/terraform:light
+      - image: kainjy/practices-of-serverless:deploy
+        auth:
+          username: kainjy
+          password: $DOCKERHUB_PASSWORD
     working_directory: /code
     steps:
       - checkout
-      - run: terraform -v
-
+      - run: apex deploy -r $AWS_DEFAULT_REGION
+      - run: apex infra init -force-copy
+      - run: apex infra apply -auto-approve
 
 workflows:
   version: 2
