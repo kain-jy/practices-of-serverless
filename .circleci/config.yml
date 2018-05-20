@@ -7,12 +7,32 @@ jobs:
         auth:
           username: kainjy
           password: $DOCKERHUB_PASSWORD
+      - image: kainjy/practices-of-serverless:dynamodb
+        name: dynamodb
+        auth:
+          username: kainjy
+          password: $DOCKERHUB_PASSWORD
+    working_directory: /code
+    environment:
+      AWS_DEFAULT_REGION: ap-northeast-1
+      AWS_ACCESS_KEY_ID: dummy
+      AWS_SECRET_ACCESS_KEY: dummy
+      DYNAMODB_ENDPOINT_URL: http://dynamodb:8000
     steps:
       - checkout
       - run: pytest test.py
+  deploy:
+    docker:
+      - image: hashicorp/terraform:light
+    working_directory: /code
+    steps:
+      - checkout
+      - run: terraform -v
+
 
 workflows:
   version: 2
-  test:
+  test_deploy:
     jobs:
       - test
+      - deploy

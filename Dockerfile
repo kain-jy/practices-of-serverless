@@ -1,8 +1,8 @@
 FROM python:3-slim
 
-WORKDIR /root
+WORKDIR /code
 
-COPY app.py /root/app.py
+COPY app.py /code/app.py
 
 RUN pip install flask
 
