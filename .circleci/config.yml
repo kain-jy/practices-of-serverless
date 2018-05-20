@@ -9,9 +9,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
-      - run: pwd
-      - run: python -V
-      - run: pip freeze -l
+      - run: pytest test.py
 
 workflows:
   version: 2
