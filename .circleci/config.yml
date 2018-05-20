@@ -1,0 +1,20 @@
+version: 2
+
+jobs:
+  test:
+    docker:
+      - image: kainjy/practices-of-serverless:test
+        auth:
+          username: kainjy
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout
+      - run: pwd
+      - run: python -V
+      - run: pip freeze -l
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
