@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  dynamodb:
+    build:
+      context: .
+      dockerfile: Dockerfile.dynamodb
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+  deploy:
+    build:
+      context: .
+      dockerfile: Dockerfile.deploy
